@@ -22,7 +22,7 @@ public class ProcessService {
     }
 
     public Integer selectProcessid() throws Exception {
-        return processMapper.selectProcessid();
+        return processMapper.selectProcessid().get(0);
     }
 
     public Integer hasReceptioning(Integer doctor) throws Exception {

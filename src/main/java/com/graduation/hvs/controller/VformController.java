@@ -79,7 +79,8 @@ public class VformController {
         if (userid.isEmpty()) {
             return null;
         }
-        List<Map<String, Object>> vformList = vformService.getMyVform1(Integer.valueOf(userid));
+        //List<Map<String, Object>> vformList = vformService.getMyVform1(Integer.valueOf(userid));
+        List<Map<String, Object>> vformList = vformService.getMyVform2();
         for (Map<String, Object> map : vformList) {
             String m = map.get("mediid").toString().replace("[","")
                     .replace("]","");

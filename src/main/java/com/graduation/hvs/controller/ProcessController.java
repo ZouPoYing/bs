@@ -138,9 +138,9 @@ public class ProcessController {
     public Map<String, Object> updateP1(@RequestBody Map<String, String> params) throws Exception {
         String processid = params.get("processid");
         String patient = params.get("patient");
-        String userid = params.get("userid");
+        //String userid = params.get("userid");
         Map<String, Object> result = new HashMap<>();
-        if (processid.isEmpty()) {
+        if (processid.isEmpty() || patient.isEmpty()) {
             result.put("msg", "参数不能为空");
             return result;
         }
@@ -151,7 +151,7 @@ public class ProcessController {
         }
         processService.updatePByProcessid("结束",Integer.valueOf(processid));
         String msg = "恭喜你取药成功，现在就诊流程已经全部完成，祝您早日康复！";
-        msgService.addMsgHvs(msg,15,Integer.valueOf(processid),Integer.valueOf(patient),Integer.valueOf(userid));
+        msgService.addMsgHvs(msg,15,Integer.valueOf(processid),Integer.valueOf(patient),(Integer) map.get("doctor"));
         result.put("success", true);
         return result;
     }

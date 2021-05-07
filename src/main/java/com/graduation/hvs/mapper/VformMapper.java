@@ -17,7 +17,7 @@ public interface VformMapper {
     @Select("SELECT * FROM VFORM ORDER BY DATE desc")
     @Results({
             @Result(property = "vformid", column = "vformid")})
-    Integer selectVformid();
+    List<Integer> selectVformid();
 
     @Select("select user.name as name,vform.disease as disease,vform.cause as cause,vform.mediid as mediid," +
             "vform.money as money,vform.sm as sm,vform.tip as tip,vform.date as date,files.filename AS filename" +
@@ -65,4 +65,25 @@ public interface VformMapper {
             @Result(property = "processstep", column = "processstep"),
             @Result(property = "filename", column = "filename")})
     List<Map<String, Object>> getMyVform1(Integer userid);
+
+    @Select("select user.name as name,vform.disease as disease,vform.cause as cause,vform.mediid as mediid," +
+            "vform.money as money,vform.sm as sm,vform.tip as tip,vform.date as date,files.filename AS filename" +
+            " ,process.processstep as processstep,process.patient as patient,process.processid as processid \n" +
+            "from process LEFT JOIN vform on process.vformid=vform.vformid \n" +
+            "LEFT JOIN user ON process.patient=user.userid LEFT JOIN files ON process.filesid=files.fileid\n" +
+            "where process.processstep='取药' ")
+    @Results({
+            @Result(property = "processid", column = "processid"),
+            @Result(property = "patient", column = "patient"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "disease", column = "disease"),
+            @Result(property = "cause", column = "cause"),
+            @Result(property = "mediid", column = "mediid"),
+            @Result(property = "money", column = "money"),
+            @Result(property = "sm", column = "sm"),
+            @Result(property = "tip", column = "tip"),
+            @Result(property = "date", column = "date"),
+            @Result(property = "processstep", column = "processstep"),
+            @Result(property = "filename", column = "filename")})
+    List<Map<String, Object>> getMyVform2();
 }

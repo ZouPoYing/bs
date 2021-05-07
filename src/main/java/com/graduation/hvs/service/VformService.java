@@ -20,7 +20,7 @@ public class VformService {
     }
 
     public Integer selectVformid() throws Exception {
-        return vformMapper.selectVformid();
+        return vformMapper.selectVformid().get(0);
     }
 
     public List<Map<String, Object>> getMyVform(Integer userid) throws Exception {
@@ -33,5 +33,9 @@ public class VformService {
 
     public List<Map<String, Object>> getMyVform1(Integer userid) throws Exception {
         return vformMapper.getMyVform1(userid);
+    }
+
+    public List<Map<String, Object>> getMyVform2() throws Exception {
+        return vformMapper.getMyVform2();
     }
 }

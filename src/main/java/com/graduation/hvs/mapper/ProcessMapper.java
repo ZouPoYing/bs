@@ -8,7 +8,7 @@ import java.util.Map;
 @Mapper
 public interface ProcessMapper {
 
-    @Insert("INSERT INTO PROCESS(patient,processid, doctor, filesid, processstep) VALUES (#{patient}, #{doctor}, #{filesid}, '挂号')")
+    @Insert("INSERT INTO PROCESS(patient, doctor, filesid, processstep) VALUES (#{patient}, #{doctor}, #{filesid}, '挂号')")
     void addDoctorDetail(Integer patient, Integer doctor, Integer filesid);
 
     @Select("SELECT COUNT(*) FROM PROCESS WHERE PATIENT=#{patient} AND PROCESSSTEP!='结束'")
@@ -17,7 +17,7 @@ public interface ProcessMapper {
     @Select("SELECT * FROM PROCESS ORDER BY DATE desc")
     @Results({
             @Result(property = "processid", column = "processid")})
-    Integer selectProcessid();
+    List<Integer> selectProcessid();
 
     @Select("SELECT COUNT(*) FROM PROCESS WHERE DOCTOR=#{doctor} AND PROCESSSTEP='就诊'")
     Integer hasReceptioning(Integer doctor);
