@@ -30,4 +30,8 @@ public class MediService {
     public void deleteMedi(Integer mediid) throws Exception {
         mediMapper.deleteMedi(mediid);
     }
+
+    public Map<String, Object> getMediByMedi(String medi) throws Exception {
+        return mediMapper.getMediByMedi(medi).get(0);
+    }
 }

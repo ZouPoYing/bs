@@ -14,6 +14,11 @@ public interface VformMapper {
     void addVfrom(Integer patient, Integer doctor, String disease, String cause, String mediid, BigDecimal money,
                   String sm, String tip);
 
+    @Insert("INSERT INTO VFORM(patient,doctor, disease, cause,money,sm,tip,cfid,ji) " +
+            "VALUES (#{patient}, #{doctor},#{disease},#{cause},#{money},#{sm},#{tip},#{cfid},#{ji})")
+    void addVfrom1(Integer patient, Integer doctor, String disease, String cause, BigDecimal money,
+                  String sm, String tip, Integer cfid, Integer ji);
+
     @Select("SELECT * FROM VFORM ORDER BY DATE desc")
     @Results({
             @Result(property = "vformid", column = "vformid")})

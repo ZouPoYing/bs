@@ -81,7 +81,7 @@ public class SetController {
     @GetMapping("/downloadFile/{filename}")
     public void downloadFile(@PathVariable("filename") String filename, HttpServletRequest request, HttpServletResponse response) {
         //1.获取文件绝对路径
-        String path = "D:/IDEAProject/hvs/src/main/resources/static/" + filename;
+        String path = "D:/IDEAProjects/hvs/src/main/resources/static/" + filename;
         //2.通过绝对路径定义File
         File f=new File(path);
         //3.调用FileUtil下载文件

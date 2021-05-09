@@ -18,6 +18,8 @@ public class Vform {
     private String tip;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date date;
+    private Integer cfid;
+    private Integer ji;
 
     @Override
     public String toString() {
@@ -32,7 +34,29 @@ public class Vform {
                 ", sm='" + sm + '\'' +
                 ", tip='" + tip + '\'' +
                 ", date=" + date +
+                ", cfid=" + cfid +
+                ", ji=" + ji +
                 '}';
+    }
+
+    public void setJi(Integer ji) {
+        this.ji = ji;
+    }
+
+    public Integer getJi() {
+        return ji;
+    }
+
+    public String getMediid() {
+        return mediid;
+    }
+
+    public Integer getCfid() {
+        return cfid;
+    }
+
+    public void setCfid(Integer cfid) {
+        this.cfid = cfid;
     }
 
     public void setMediid(String mediid) {

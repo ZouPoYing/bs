@@ -19,6 +19,11 @@ public class VformService {
         vformMapper.addVfrom(patient,doctor,disease,cause,mediid,money,sm,tip);
     }
 
+    public void addVform1(Integer patient, Integer doctor, String disease, String cause, BigDecimal money,
+                         String sm, String tip, Integer cfid, Integer ji) throws Exception {
+        vformMapper.addVfrom1(patient,doctor,disease,cause,money,sm,tip,cfid,ji);
+    }
+
     public Integer selectVformid() throws Exception {
         return vformMapper.selectVformid().get(0);
     }

@@ -30,4 +30,15 @@ public interface MediMapper {
 
     @Delete("DELETE FROM MEDI WHERE mediid=#{mediid}")
     void deleteMedi(Integer mediid);
+
+    @Select("SELECT * FROM MEDI WHERE MEDINAME = #{medi}")
+    @Results({
+            @Result(property = "mediid", column = "mediid"),
+            @Result(property = "mediname", column = "mediname"),
+            @Result(property = "meditype", column = "meditype"),
+            @Result(property = "medimsg", column = "medimsg"),
+            @Result(property = "medinum", column = "medinum"),
+            @Result(property = "medimoney", column = "medimoney"),
+            @Result(property = "date", column = "date")})
+    List<Map<String, Object>> getMediByMedi(String medi);
 }

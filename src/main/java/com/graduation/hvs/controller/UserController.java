@@ -280,7 +280,8 @@ public class UserController {
         String tjdoctor = params.get("tjdoctor");
         String sub = "";
         if (!tjdate.isEmpty() && !tjdate.equals("全部")) {
-            sub += " and str_to_date(af2.date,'%Y-%c-%d') = str_to_date(now(),'%Y-%c-%d')";
+            tjdate = tjdate.substring(0,10);
+            sub += " and str_to_date(af2.date,'%Y-%c-%d') = str_to_date('"+tjdate+"','%Y-%c-%d')";
         }
         if (!tjdepartment.isEmpty() && !tjdepartment.equals("全部")) {
             sub += " and user.department='"+tjdepartment+"'";
@@ -298,7 +299,8 @@ public class UserController {
         String tjdoctor = params.get("tjdoctor");
         String sub = "";
         if (!tjdate.isEmpty() && !tjdate.equals("全部")) {
-            sub += " and str_to_date(af2.date,'%Y-%c-%d') = str_to_date(now(),'%Y-%c-%d')";
+            tjdate = tjdate.substring(0,10);
+            sub += " and str_to_date(af2.date,'%Y-%c-%d') = str_to_date('"+tjdate+"','%Y-%c-%d')";
         }
         if (!tjdepartment.isEmpty() && !tjdepartment.equals("全部")) {
             sub += " and user.department='"+tjdepartment+"'";

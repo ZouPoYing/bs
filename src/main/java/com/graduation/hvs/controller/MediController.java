@@ -86,7 +86,9 @@ public class MediController {
         for (Map<String, Object> map : mediList) {
             Map<String, Object> result = new HashMap<>();
             result.put("key", map.get("mediid"));
-            result.put("label", map.get("mediname")+"/"+map.get("money"));
+            result.put("money", map.get("money"));
+            result.put("num", map.get("num"));
+            result.put("label", map.get("mediname"));
             if ((int) map.get("num") == 0) {
                 result.put("disabled", true);
             }

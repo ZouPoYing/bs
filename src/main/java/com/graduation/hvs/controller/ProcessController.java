@@ -91,10 +91,13 @@ public class ProcessController {
             result.put("msg", "您没有正在接诊的病人，请先接诊病人");
             return result;
         }
+        Map<String, Object> rec = processService.getReception(Integer.valueOf(userid));
+        User doctor = userService.getUserById((Integer) rec.get("doctor"));
         result.put("success", true);
-        result.putAll(processService.getReception(Integer.valueOf(userid)));
+        result.putAll(rec);
         result.put("file", result.get("filename").toString().substring(result.get("filename").toString().replaceFirst("_","-").indexOf("_")+1));
         result.put("date", DateUtils.D2NYR(result.get("date")));
+        result.put("doctorName", doctor.getName());
         return result;
     }
 

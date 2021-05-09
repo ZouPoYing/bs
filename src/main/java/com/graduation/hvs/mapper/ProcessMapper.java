@@ -29,7 +29,7 @@ public interface ProcessMapper {
             ",process.processstep as processstep, process.patient as patient, \n" +
             "user.username as username,user.name as name, user.telephone as telephone,\n" +
             "user.email as email,user.age as age,user.sex as sex,process.filesid as filesid,\n" +
-            "files.filename as filename,user.address as address\n" +
+            "files.filename as filename,user.address as address,process.doctor as doctor\n" +
             "  from msg LEFT JOIN process ON msg.processid=process.processid\n" +
             " LEFT JOIN user ON process.patient=user.userid \n" +
             "LEFT JOIN files ON process.filesid=files.fileid\n" +
@@ -39,6 +39,7 @@ public interface ProcessMapper {
             @Result(property = "processid", column = "processid"),
             @Result(property = "processstep", column = "processstep"),
             @Result(property = "patient", column = "patient"),
+            @Result(property = "doctor", column = "doctor"),
             @Result(property = "username", column = "username"),
             @Result(property = "name", column = "name"),
             @Result(property = "telephone", column = "telephone"),
