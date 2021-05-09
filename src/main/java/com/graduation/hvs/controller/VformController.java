@@ -96,9 +96,9 @@ public class VformController {
         //List<Map<String, Object>> vformList = vformService.getMyVform1(Integer.valueOf(userid));
         List<Map<String, Object>> vformList = vformService.getMyVform2();
         for (Map<String, Object> map : vformList) {
-            String m = map.get("mediid").toString().replace("[","")
-                    .replace("]","");
-            map.put("medinames",vformService.getMedinames(m));
+//            String m = map.get("mediid").toString().replace("[","")
+//                    .replace("]","");
+//            map.put("medinames",vformService.getMedinames(m));
             map.put("date", DateUtils.D2NYR(map.get("date")));
         }
         return vformList;
@@ -135,5 +135,28 @@ public class VformController {
         result.put("money", money);
         result.put("success", true);
         return result;
+    }
+
+    @RequestMapping("/getMyCf")
+    public List<Map<String, Object>> getMyCf(@RequestBody Map<String, String> params) throws Exception {
+        String doctor = params.get("doctor");
+        if (doctor.isEmpty()) {
+            return null;
+        }
+        List<Map<String, Object>> myCf = vformService.getMyCf(Integer.valueOf(doctor));
+        for (Map<String, Object> map : myCf) {
+            map.put("date", DateUtils.D2NYR(map.get("date")));
+        }
+        return myCf;
+    }
+
+    @RequestMapping("/getMyCfdetail")
+    public List<Map<String, Object>> getMyCfdetail(@RequestBody Map<String, String> params) throws Exception {
+        String cfid = params.get("cfid");
+        if (cfid.isEmpty()) {
+            return null;
+        }
+        List<Map<String, Object>> myCfdetail = vformService.getMyCfdetail(Integer.valueOf(cfid));
+        return myCfdetail;
     }
 }

@@ -91,4 +91,34 @@ public interface VformMapper {
             @Result(property = "processstep", column = "processstep"),
             @Result(property = "filename", column = "filename")})
     List<Map<String, Object>> getMyVform2();
+
+    @Select("SELECT user.username as username,user.name as name,user.sex as sex,user.age as age,user.telephone as telephone," +
+            "user.email as email,user.address as address,vform.disease as disease,vform.cause as cause,vform.money as money," +
+            "vform.sm as sm,vform.tip as tip,vform.ji as ji,vform.cfid as cfid,vform.date as date,process.processstep as processstep\n" +
+            "FROM process LEFT join user on process.patient=user.userid left join vform on process.vformid=vform.vformid " +
+            "where process.doctor=#{doctor} and process.processstep in ('缴费','取药','结束') order by process.date desc")
+    @Results({
+            @Result(property = "username", column = "username"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "sex", column = "sex"),
+            @Result(property = "age", column = "age"),
+            @Result(property = "telephone", column = "telephone"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "address", column = "address"),
+            @Result(property = "sm", column = "sm"),
+            @Result(property = "tip", column = "tip"),
+            @Result(property = "date", column = "date"),
+            @Result(property = "disease", column = "disease"),
+            @Result(property = "cause", column = "cause"),
+            @Result(property = "money", column = "money"),
+            @Result(property = "processstep", column = "processstep"),
+            @Result(property = "ji", column = "ji"),
+            @Result(property = "cfid", column = "cfid")})
+    List<Map<String, Object>> getMyCf(Integer doctor);
+
+    @Select("select mediname,medinum from cfdetail where cfid =#{cfid}")
+    @Results({
+            @Result(property = "username", column = "username"),
+            @Result(property = "cfid", column = "cfid")})
+    List<Map<String, Object>> getMyCfdetail(Integer cfid);
 }

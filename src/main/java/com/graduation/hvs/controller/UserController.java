@@ -279,9 +279,11 @@ public class UserController {
         String tjdepartment = params.get("tjdepartment");
         String tjdoctor = params.get("tjdoctor");
         String sub = "";
-        if (!tjdate.isEmpty() && !tjdate.equals("全部")) {
-            tjdate = tjdate.substring(0,10);
-            sub += " and str_to_date(af2.date,'%Y-%c-%d') = str_to_date('"+tjdate+"','%Y-%c-%d')";
+        if (!tjdate.equals("\"\"") && !tjdate.equals("全部")) {
+            String tjdate1= tjdate.substring(2,12);
+            String tjdate2= tjdate.substring(15,25);
+            sub += " and str_to_date(af2.date,'%Y-%c-%d') >= str_to_date('"+tjdate1+"','%Y-%c-%d')" +
+                    " and str_to_date(af2.date,'%Y-%c-%d') <= str_to_date('"+tjdate2+"','%Y-%c-%d')";
         }
         if (!tjdepartment.isEmpty() && !tjdepartment.equals("全部")) {
             sub += " and user.department='"+tjdepartment+"'";
@@ -298,11 +300,13 @@ public class UserController {
         String tjdepartment = params.get("tjdepartment");
         String tjdoctor = params.get("tjdoctor");
         String sub = "";
-        if (!tjdate.isEmpty() && !tjdate.equals("全部")) {
-            tjdate = tjdate.substring(0,10);
-            sub += " and str_to_date(af2.date,'%Y-%c-%d') = str_to_date('"+tjdate+"','%Y-%c-%d')";
+        if (!tjdate.equals("\"\"") && !tjdate.equals("全部")) {
+            String tjdate1= tjdate.substring(2,12);
+            String tjdate2= tjdate.substring(15,25);
+            sub += " and str_to_date(af2.date,'%Y-%c-%d') >= str_to_date('"+tjdate1+"','%Y-%c-%d')" +
+                    " and str_to_date(af2.date,'%Y-%c-%d') <= str_to_date('"+tjdate2+"','%Y-%c-%d')";
         }
-        if (!tjdepartment.isEmpty() && !tjdepartment.equals("全部")) {
+       if (!tjdepartment.isEmpty() && !tjdepartment.equals("全部")) {
             sub += " and user.department='"+tjdepartment+"'";
         }
         if (!tjdoctor.isEmpty() && !tjdoctor.equals("全部")) {

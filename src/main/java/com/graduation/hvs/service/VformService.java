@@ -43,4 +43,12 @@ public class VformService {
     public List<Map<String, Object>> getMyVform2() throws Exception {
         return vformMapper.getMyVform2();
     }
+
+    public List<Map<String, Object>> getMyCf(Integer doctor) throws Exception {
+        return vformMapper.getMyCf(doctor);
+    }
+
+    public List<Map<String, Object>> getMyCfdetail(Integer cfid) throws Exception {
+        return vformMapper.getMyCfdetail(cfid);
+    }
 }
