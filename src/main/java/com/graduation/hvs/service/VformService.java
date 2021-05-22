@@ -48,6 +48,10 @@ public class VformService {
         return vformMapper.getMyCf(doctor);
     }
 
+    public List<Map<String, Object>> getMyCfByProcessid(Integer processid) throws Exception {
+        return vformMapper.getMyCfByProcessid(processid);
+    }
+
     public List<Map<String, Object>> getMyCfdetail(Integer cfid) throws Exception {
         return vformMapper.getMyCfdetail(cfid);
     }

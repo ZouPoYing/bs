@@ -150,6 +150,19 @@ public class VformController {
         return myCf;
     }
 
+    @RequestMapping("/getMyCfByProcessid")
+    public List<Map<String, Object>> getMyCfByProcessid(@RequestBody Map<String, String> params) throws Exception {
+        String processid = params.get("processid");
+        if (processid.isEmpty()) {
+            return null;
+        }
+        List<Map<String, Object>> myCf = vformService.getMyCfByProcessid(Integer.valueOf(processid));
+        for (Map<String, Object> map : myCf) {
+            map.put("date", DateUtils.D2NYR(map.get("date")));
+        }
+        return myCf;
+    }
+
     @RequestMapping("/getMyCfdetail")
     public List<Map<String, Object>> getMyCfdetail(@RequestBody Map<String, String> params) throws Exception {
         String cfid = params.get("cfid");
