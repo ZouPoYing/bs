@@ -3,7 +3,6 @@ package com.graduation.bs.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.graduation.bs.dao.Book;
-import com.graduation.bs.dao.Category;
 import com.graduation.bs.dao.File;
 import com.graduation.bs.mapper.BookMapper;
 import com.graduation.bs.mapper.CategoryMapper;
@@ -150,6 +149,19 @@ public class BookController {
             return result;
         }
         result.put(type, bookMapper.getFieldList(type));
+        result.put("success", true);
+        return result;
+    }
+
+    @RequestMapping("/deleteBook")
+    public Map<String, Object> deleteBook(@RequestBody Map<String, String> params) throws Exception {
+        String bookId = params.get("bookId");
+        Map<String, Object> result = new HashMap<>();
+        if (MyUtil.isEmpty(bookId)) {
+            result.put("msg", "参数不能为空");
+            return result;
+        }
+        bookMapper.deleteById(bookId);
         result.put("success", true);
         return result;
     }
